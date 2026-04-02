@@ -1,42 +1,35 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 dotenv.config();
-const prisma = require('./lib/prisma');
+
+// Routes
+const authRoutes = require('./routes/auth.routes');
+
+if (!process.env.DATABASE_URL) {
+    throw new Error('Missing required env var: DATABASE_URL');
+}
+
+if (!process.env.JWT_SECRET) {
+    throw new Error('Missing required env var: JWT_SECRET');
+}
 
 const port = process.env.PORT || 3000;
 const app = express();
 
 
+
 // Middlewares
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
+// Use routes
+app.use('/auth', authRoutes);
+
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'UP', message: 'Finance API is running' });
-});
-
-app.get('/user/get', async (req, res) => {
-    try {
-        const data = await prisma.User.findMany();
-        res.json(data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
-app.post('/user/post', async (req, res) => {
-    try {
-        const { name, email } = req.body;
-        const newUser = await prisma.User.create({
-            data: { name, email },
-        });
-        res.status(201).json(newUser);
-    } catch (error) {
-        console.error('Error creating user:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
 });
 
 app.listen(port, () => {
