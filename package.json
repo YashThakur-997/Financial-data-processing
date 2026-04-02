@@ -20,9 +20,15 @@
   },
   "homepage": "https://github.com/YashThakur-997/Financial-data-processing#readme",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
     "cors": "^2.8.6",
-    "dotenv": "^17.4.0",
     "express": "^5.2.1",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.0",
+    "prisma": "^7.6.0"
   }
 }
