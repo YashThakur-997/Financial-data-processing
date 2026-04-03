@@ -12,6 +12,11 @@ enum Role {
   USER
 }
 
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   name      String
@@ -19,4 +24,21 @@ model User {
   password  String   @db.VarChar(255)
   role      Role     @default(USER)
   createdAt DateTime @default(now())
+
+  financialRecords FinancialRecord[]
+}
+
+model FinancialRecord {
+  id          Int             @id @default(autoincrement())
+  amount      Decimal         @db.Decimal(10, 2) // Precision for money
+  type        TransactionType
+  category    String          // e.g., 'Food', 'Salary', 'Rent'
+  description String?
+  date        DateTime        @default(now())
+  
+  // Relation Fields
+  userId      Int
+  user        User            @relation(fields: [userId], references: [id])
+
+  @@map("financial_records")
 }

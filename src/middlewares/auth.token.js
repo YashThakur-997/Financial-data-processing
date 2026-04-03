@@ -3,12 +3,14 @@ let dotenv = require('dotenv');
 
 dotenv.config();
 
-let authMiddleware = (req, res, next) => {
+let get_info_from_token = (req, res, next) => {
     let token = req.headers['authorization'] || req.headers['token'] || req.cookies?.token;
 
     if (!token) {
         return res.status(401).send({ message: 'Access denied. No token provided.' });
     }
+
+    console.log("Received token:", token);
 
     // Strip "Bearer " if present
     if (typeof token === 'string' && token.startsWith('Bearer ')) {
@@ -20,8 +22,9 @@ let authMiddleware = (req, res, next) => {
             return res.status(403).send({ message: 'Invalid token.' });
         }
         req.user = user;
+        console.log("Decoded user from token:", user);
         next();
     });
 };
 
-module.exports = authMiddleware;
+module.exports = { get_info_from_token };

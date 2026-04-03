@@ -5,4 +5,4 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
-module.exports = adminOnly;
+module.exports = {adminOnly};
