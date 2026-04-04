@@ -35,6 +35,9 @@ This project is a secure, role-based backend API for managing financial records 
 
 ### Docker Setup (Recommended)
 1. Clone the repo
+	```sh
+	git clone https://github.com/YashThakur-997/Financial-data-processing.git
+	```
 2. Build and start containers:
    ```sh
    docker-compose up --build
