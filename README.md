@@ -18,11 +18,10 @@ This project is a secure, role-based backend API for managing financial records 
 
 ## Roles & Permissions
 | Role    | Create | Read Own | Read All | Update | Delete |
-|---------|--------|----------|----------|--------|--------|
+|---------|--------|----------|----------|--------|---------|
 | ADMIN   | ✅     | ✅       | ✅       | ✅     | ✅     |
-| ANALYST | ❌     | ✅       | ❌       | ❌     | ❌     |
-| USER    | ✅     | ✅       | ❌       | ❌     | ❌     |
-| VIEWER  | ❌     | ✅       | ❌       | ❌     | ❌     |
+| ANALYST | ❌     | ✅       | ✅       | ❌     | ❌     |
+| USER    | ❌     | ✅       | ❌       | ❌     | ❌     |
 
 ---
 
