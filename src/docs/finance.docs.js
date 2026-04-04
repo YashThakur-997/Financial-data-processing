@@ -86,6 +86,8 @@
  *         description: List of all records
  *       401:
  *         description: Unauthorized
+ *       404:
+ *         description: No records found
  */
 
 /**
@@ -122,7 +124,7 @@
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id (financial record ID)
+ *         name: id
  *         schema:
  *           type: string
  *         required: true

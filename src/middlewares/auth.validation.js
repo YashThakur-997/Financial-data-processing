@@ -1,6 +1,11 @@
 let joi = require('joi');
 
 const signupvalidation = (req, res, next) => {
+    if (req.body.role) {
+        req.body.role = req.body.role.toUpperCase();
+    } else {
+        req.body.role = 'USER'; // Default to USER if not provided
+    }
     let signupSchema = joi.object({
         name: joi.string().min(3).max(30).required(),
         email: joi.string().email().required(),

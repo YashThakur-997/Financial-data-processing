@@ -26,6 +26,31 @@ This project is a secure, role-based backend API for managing financial records 
 ---
 
 ## Setup
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed (required for Docker Compose setup)
+- Node.js 20+ (for manual/local setup)
+
+---
+
+### Docker Setup (Recommended)
+1. Clone the repo
+2. Build and start containers:
+   ```sh
+   docker-compose up --build
+   ```
+3. Apply Prisma migrations (first time only):
+   ```sh
+   docker-compose exec app sh
+   npx prisma migrate deploy
+   ```
+4. Access the app:
+   - API: http://localhost:3000
+   - Swagger docs: http://localhost:3000/api-docs
+
+---
+
+### Manual Setup
 1. Clone the repo
 2. Install dependencies:
 	```sh
@@ -83,7 +108,7 @@ This project is a secure, role-based backend API for managing financial records 
 - Dashboard/summary API for analytics
 - Audit logging for admin actions
 - Automated tests
-- API documentation with Swagger/OpenAPI
+- API documentation with Swagger
 
 ---
 
