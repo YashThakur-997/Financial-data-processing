@@ -82,9 +82,15 @@ This project is a secure, role-based backend API for managing financial records 
 
 ### Finance
 - `POST /finance/add` — Create a record (admin can specify userId)
-- `GET /finance/records` — Get own records (admin can get all if implemented)
+- `GET /finance/records` — Get own records (user own records)
+- `GET /finance/all-records` — Get own records (admin can get all user records)
 - `PUT /finance/edit/:id` — Update a record (owner or admin)
 - `DELETE /finance/delete/:id` — Delete a record (owner or admin)
+- `GET /finance/summary` — Get own records (user own records)
+- `GET /finance/category-summary` — Get own records (user own records)
+- `GET /finance/overall-summary` — Get own records (admin and analyst get overall summary)
+- `GET /finance/overall-category-summary` — Get own records (admin and analyst get overall category summary)
+- `GET /finance/dashboard` - (rbac for dashboard)
 
 ---
 
