@@ -16,5 +16,8 @@ COPY src/ ./
 # Expose the port your app runs on
 EXPOSE 3000
 
+# Generate Prisma schema
+RUN npx prisma generate --schema=prisma/schema.prisma
+
 # Start the app
-CMD ["node", "index.js"]
+CMD npx prisma migrate deploy --schema=prisma/schema.prisma && node index.js
