@@ -83,7 +83,7 @@ This project is a secure, role-based backend API for managing financial records 
 - Dashboard/summary API for analytics
 - Audit logging for admin actions
 - Automated tests
-- API documentation with Swagger/OpenAPI
+- API documentation with Swagger
 
 ---
 
