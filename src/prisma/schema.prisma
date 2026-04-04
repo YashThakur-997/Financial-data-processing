@@ -17,6 +17,16 @@ enum TransactionType {
   EXPENSE
 }
 
+enum Category {
+  FOOD
+  RENT
+  SALARY
+  TRANSPORT
+  ENTERTAINMENT
+  UTILITIES
+  OTHERS
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   name      String
@@ -32,7 +42,7 @@ model FinancialRecord {
   id          Int             @id @default(autoincrement())
   amount      Decimal         @db.Decimal(10, 2) // Precision for money
   type        TransactionType
-  category    String          // e.g., 'Food', 'Salary', 'Rent'
+  category    Category        // e.g., 'Food', 'Salary', 'Rent'
   description String?
   date        DateTime        @default(now())
   

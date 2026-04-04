@@ -41,7 +41,7 @@ const login = async (req, res) => {
             secure: process.env.NODE_ENV === 'production',
             maxAge: 60 * 60 * 1000,
         });
-        res.status(200).json({ message: 'Login successful', user: { name: user.name, email: user.email, role: user.role }});
+        res.status(200).json({ message: 'Login successful', user: { name: user.name, email: user.email, role: user.role },token});
 
     } catch (error) {
         console.error('Error during login:', error);

@@ -10,7 +10,7 @@ let get_info_from_token = (req, res, next) => {
         return res.status(401).send({ message: 'Access denied. No token provided.' });
     }
 
-    console.log("Received token:", token);
+    // console.log("Received token:", token);
 
     // Strip "Bearer " if present
     if (typeof token === 'string' && token.startsWith('Bearer ')) {
@@ -22,7 +22,7 @@ let get_info_from_token = (req, res, next) => {
             return res.status(403).send({ message: 'Invalid token.' });
         }
         req.user = user;
-        console.log("Decoded user from token:", user);
+        // console.log("Decoded user from token:", user);
         next();
     });
 };

@@ -3,12 +3,14 @@ const prisma = require('../lib/prisma');
 const addRecord = async (req, res) => {
   try {
     const { amount, type, category, description , userId } = req.body;
+    // Ensure category is uppercase
+    const normalizedCategory = category ? category.toUpperCase() : undefined;
 
     const record = await prisma.FinancialRecord.create({
       data: {
         amount,        // Prisma handles the Decimal conversion
         type,          // 'INCOME' or 'EXPENSE'
-        category,
+        category: normalizedCategory,
         description,
         userId
       }
@@ -21,6 +23,8 @@ const addRecord = async (req, res) => {
   }
 };
 
+
+// Get all records for the authenticated user , user access only their records
 const getRecords = async (req, res) => {
   try {
     const userId = req.user.id; // From your Auth Middleware (JWT)
@@ -36,6 +40,20 @@ const getRecords = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch records" });
   }
 };
+
+const getAllRecords = async (req, res) => {
+  try {
+    const records = await prisma.FinancialRecord.findMany();
+    if (records.length === 0) {
+      return res.status(404).json({ message: "No records found" });
+    }
+    res.status(200).json(records);
+  } catch (error) {
+    // console.error("Error fetching records:", error);
+    res.status(500).json({ error: "Failed to fetch records" });
+  }
+};
+
 
 const deleteRecord = async (req, res) => {
   try {
@@ -66,12 +84,14 @@ const editRecord = async (req, res) => {
     if (!record) {
       return res.status(404).json({ error: "Record not found" });
     }
+    // Ensure category is uppercase
+    const normalizedCategory = category ? category.toUpperCase() : undefined;
     const updatedRecord = await prisma.FinancialRecord.update({
       where: { id: parseInt(id) },
       data: {
         amount,
         type,
-        category,
+        category: normalizedCategory,
         description,
         userId
       }
@@ -84,4 +104,4 @@ const editRecord = async (req, res) => {
 };
 
 
-module.exports = {addRecord, getRecords, deleteRecord, editRecord};
+module.exports = {addRecord, getRecords, getAllRecords, deleteRecord, editRecord};

@@ -1,3 +1,5 @@
+// Swagger Docs
+const setupSwagger = require('./utils/swagger');
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -22,6 +24,9 @@ if (!process.env.JWT_SECRET) {
 const port = process.env.PORT || 3000;
 const app = express();
 
+
+// Setup Swagger UI
+setupSwagger(app);
 
 
 // Middlewares
