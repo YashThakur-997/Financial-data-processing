@@ -42,7 +42,7 @@ This project is a secure, role-based backend API for managing financial records 
    ```sh
    docker-compose up --build
    ```
-3. The app will automatically apply all Prisma migrations on startup—no manual migration step needed. Just wait a little to start the app
+3. The app will automatically apply all Prisma migrations on startup—no manual migration step needed. Just wait a little to start the app it will take a while
 
 4. Access the app:
    - API: http://localhost:3000
