@@ -42,11 +42,8 @@ This project is a secure, role-based backend API for managing financial records 
    ```sh
    docker-compose up --build
    ```
-3. Apply Prisma migrations (first time only):
-   ```sh
-   docker-compose exec app sh
-   npx prisma migrate deploy
-   ```
+3. The app will automatically apply all Prisma migrations on startup—no manual migration step needed. Just wait a little to start the app
+
 4. Access the app:
    - API: http://localhost:3000
    - Swagger docs: http://localhost:3000/api-docs
